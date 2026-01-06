@@ -1,0 +1,152 @@
+# Rime schema
+# encoding: utf-8
+
+__include: jyut6ping3.schema:/
+
+schema:
+  schema_id: jyut6ping3_triple
+  name: 粵語三拼
+  version: "2026-01-05"
+  author:
+    - Ayaka Mikazuki <ayaka@mail.shn.hk>
+    - LeiMaau <leimaau@qq.com>
+    - chaaklau <chaakming@gmail.com>
+    - laubonghaudoi <laubonghaudoi@icloud.com>
+    - tanxpyox <tanxpyox@gmail.com>
+    - William915 <William915@gmail.com>
+    - szc126 (@szc126)
+    - Bing Jeung <bing@ososo.io>
+    - graphemecluster <graphemecluster@gmail.com>
+    - 陳林 <1chen0bryan@gmail.com>
+  description: |-
+    採用香港語言學學會粵語拼音方案
+    https://www.lshk.org/jyutping
+    支援顯示同聲調輸入
+    Telegram 用户交流組 https://t.me/rime_cantonese
+
+translator:
+  dictionary: jyut6ping3
+  prism: jyut6ping3_triple
+  spelling_hints: 8
+
+loengfan/+:
+  prefix: "L"
+
+stroke/+:
+  prefix: "S"
+
+cangjie5/+:
+  prefix: "C"
+
+recognizer/+:
+  patterns:
+    punct: "^/([0-9]0?|[a-z]+)$"
+    luna_pinyin: "^`[a-z']*;?$"
+    loengfan: "^L[a-z']*;?$"
+    stroke: "^S[hspnz]*;?$"
+    cangjie5: "^C[a-z]*;?$"
+
+speller:
+  alphabet: "zyxwvutsrqponmlkjihgfedcbaLSC;,./"
+  initials: "zyxwvutsrqponmlkjihgfedcbaLSC"
+  algebra:
+    # 音素單字化
+    - xform/ng/N/
+    - xform/gw/q/
+    - xform/kw/Q/
+    - xform/aa/A/
+    - xform/oe/E/
+    - xform/eo/O/
+    - xform/yu/y/
+    # 無聲母
+    - xform/^([aeiouAEOy])/無$1/
+
+    # 韻尾類型：元音、鼻音、入聲
+    - xform/([aeiouAEOy]\d)/$1元/
+    - xform/([mnN]\d)/$1鼻/
+    - xform/([ptk]\d)/$1入/
+    # 鼻音韻
+    - xform/^([mN])(?=\d)/$1五中/
+
+    # 上排：i, ng, k
+    # 中排：0, n, t
+    # 下排：u, m, p
+    - xform/([bpmfdtnlgkNhqQwzcsj])i(?=\d)/$1i中/
+    - xform/([bpmfdtnlgkNhqQwzcsj])u(?=\d)/$1u中/
+    - xform/Oi(?=\d)/i上/
+    - xform/[iNk](?=\d)/上/
+    - xform/([aeoAEOy])(?=\d)/$1中/
+    - xform/[nt](?=\d)/中/
+    - xform/[ump](?=\d)/下/
+    # 韻腹爲列
+    - xlit/yuiA*OaeoE/一二三四五六七八九十/
+
+    # 聲調加韻類
+    # 元音
+    - xform/1元/四中/
+    - xform/2元/一中/
+    - xform/3元/三中/
+    - xform/4元/三上/
+    - xform/5元/二上/
+    - xform/6元/二中/
+    # 鼻音
+    - xform/1鼻/七中/
+    - xform/2鼻/十中/
+    - xform/3鼻/八中/
+    - xform/4鼻/八上/
+    - xform/5鼻/九上/
+    - xform/6鼻/九中/
+    # 入聲
+    - xform/1入/四下/
+    - xform/2入/五上/
+    - xform/3入/三下/
+    - xform/4入/五中/
+    - xform/5入/五下/
+    - xform/6入/二下/
+
+    # 單字鍵位名
+    # 上排
+    - xform/一上/甲/
+    - xform/二上/乙/
+    - xform/三上/丙/
+    - xform/四上/丁/
+    - xform/五上/戊/
+    - xform/六上/己/
+    - xform/七上/庚/
+    - xform/八上/辛/
+    - xform/九上/壬/
+    - xform/十上/癸/
+    # 中排
+    - xform/一中/壹/
+    - xform/二中/貳/
+    - xform/三中/叄/
+    - xform/四中/肆/
+    - xform/五中/伍/
+    - xform/六中/陸/
+    - xform/七中/柒/
+    - xform/八中/捌/
+    - xform/九中/玖/
+    - xform/十中/拾/
+    # 下排
+    - xform/一下/子/
+    - xform/二下/丑/
+    - xform/三下/寅/
+    - xform/四下/卯/
+    - xform/五下/辰/
+    - xform/六下/巳/
+    - xform/七下/午/
+    - xform/八下/未/
+    - xform/九下/申/
+    - xform/十下/酉/
+
+qwerty_layout:
+  speller/algebra/+:
+    - xlit|*Qkt**pcj*|qwertyuiop|
+    - xlit|swgdfhbzl|asdfghjkl|
+    - xlit|*qNn*無m|zxcvbnm|
+    - xlit|甲乙丙丁戊己庚辛壬癸|qwertyuiop|
+    - xlit|壹貳叄肆伍陸柒捌玖拾|asdfghjkl;|
+    - xlit|子丑寅卯辰巳午未申酉|zxcvbnm,./|
+
+__patch:
+  - qwerty_layout
