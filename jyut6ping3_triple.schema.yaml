@@ -59,7 +59,7 @@ speller:
     - xform/eo/O/
     - xform/yu/y/
     # 無聲母
-    - xform/^([aeiouAEOy])/無$1/
+    - xform/^([aeiouAEOy])/Ø$1/
 
     # 韻尾類型：元音、鼻音、入聲
     - xform/([aeiouAEOy]\d)/$1元/
@@ -141,9 +141,9 @@ speller:
 
 qwerty_layout:
   speller/algebra/+:
-    - xlit|*Qkt**pcj*|qwertyuiop|
-    - xlit|swgdfhbzl|asdfghjkl|
-    - xlit|*qNn*無m|zxcvbnm|
+    - xlit|*Qkt**pcs*|qwertyuiop|
+    - xlit|jwgdfhbzl|asdfghjkl|
+    - xlit|ØqNn**m|zxcvbnm|
     - xlit|甲乙丙丁戊己庚辛壬癸|qwertyuiop|
     - xlit|壹貳叄肆伍陸柒捌玖拾|asdfghjkl;|
     - xlit|子丑寅卯辰巳午未申酉|zxcvbnm,./|
