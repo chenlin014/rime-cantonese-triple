@@ -6,7 +6,7 @@ __include: jyut6ping3.schema:/
 schema:
   schema_id: jyut6ping3_triple
   name: 粵語三拼
-  version: "2026-01-05"
+  version: "2026-01-12"
   author:
     - Ayaka Mikazuki <ayaka@mail.shn.hk>
     - LeiMaau <leimaau@qq.com>
@@ -54,9 +54,15 @@ recognizer/+:
     cangjie5: "^C[a-z]*;?$"
 
 speller:
-  alphabet: "zyxwvutsrqponmlkjihgfedcbaLSC;,./"
-  initials: "zyxwvutsrqponmlkjihgfedcbaLSC"
+  alphabet: "zyxwvutsrqponmlkjihgfedcba;,./"
+  initials: "zyxwvutsrqponmlkjihgfedcba"
   algebra:
+    __patch:
+      - jyutping_to_saamping
+      - qwerty_layout
+
+jyutping_to_saamping:
+  __append:
     # 音素單字化
     - xform/ng/N/
     - xform/gw/q/
@@ -76,8 +82,8 @@ speller:
     - xform/^([mN])(?=\d)/$1五中/
 
     # 上排：i, ng, k
-    # 中排：0, n, t
-    # 下排：u, m, p
+    # 中排：Ø, n,  t
+    # 下排：u, m,  p
     - xform/([bpmfdtnlgkNhqQwzcsj])i(?=\d)/$1i中/
     - xform/([bpmfdtnlgkNhqQwzcsj])u(?=\d)/$1u中/
     - xform/Oi(?=\d)/i上/
@@ -147,13 +153,10 @@ speller:
     - xform/十下/酉/
 
 qwerty_layout:
-  speller/algebra/+:
+  __append:
     - xlit|*Qkt**pcs*|qwertyuiop|
     - xlit|jwgdfhbzl|asdfghjkl|
     - xlit|ØqNn**m|zxcvbnm|
     - xlit|甲乙丙丁戊己庚辛壬癸|qwertyuiop|
     - xlit|壹貳叄肆伍陸柒捌玖拾|asdfghjkl;|
     - xlit|子丑寅卯辰巳午未申酉|zxcvbnm,./|
-
-__patch:
-  - qwerty_layout
