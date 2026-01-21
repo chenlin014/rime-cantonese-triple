@@ -208,7 +208,7 @@ saamping_to_jyutping:
     # 還原韻腹
     - xlit/一二三四五六七八九十/yuiA*OaeoE/
 
-    # 特殊規則
+    # 特殊規則：i+i -> eoi
     - xform/ii/Oi/
 
     # 還原雙字音素
@@ -219,3 +219,5 @@ saamping_to_jyutping:
     - xform/E/oe/
     - xform/O/eo/
     - xform/y/yu/
+ 
+    - xform/Ø(?=.)//
