@@ -29,7 +29,7 @@ jyutping_to_saamping:
     - xform/[iNk](?=\d)/上/
     - xform/([aeoAEOy])(?=\d)/$1中/
     - xform/[nt](?=\d)/中/
-    - xform/[ump](?=\d)/
+    - xform/[ump](?=\d)/下/
     # 韻腹爲列
     - xlit/yuiA*OaeoE/一二三四五六七八九十/
 
