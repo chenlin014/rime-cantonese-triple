@@ -1,0 +1,221 @@
+# 粵拼到三拼
+jyutping_to_saamping:
+  __append:
+    # 音素單字化
+    - xform/ng/N/
+    - xform/gw/q/
+    - xform/kw/Q/
+    - xform/aa/A/
+    - xform/oe/E/
+    - xform/eo/O/
+    - xform/yu/y/
+    # 無聲母
+    - xform/^([aeiouAEOy])/Ø$1/
+
+    # 韻尾類型：元音、鼻音、入聲
+    - xform/([aeiouAEOy]\d)/$1元/
+    - xform/([mnN]\d)/$1鼻/
+    - xform/([ptk]\d)/$1入/
+    # 鼻音韻
+    - xform/^([mN])(?=\d)/$1五中/
+
+    # 韻尾爲行
+    # 上：i, ng, k
+    # 中：0, n, t
+    # 下：u, m, p
+    - xform/([bpmfdtnlgkNhqQwzcsj])i(?=\d)/$1i中/
+    - xform/([bpmfdtnlgkNhqQwzcsj])u(?=\d)/$1u中/
+    - xform/Oi(?=\d)/ii/ # 空位再利用：i+i -> eoi
+    - xform/[iNk](?=\d)/上/
+    - xform/([aeoAEOy])(?=\d)/$1中/
+    - xform/[nt](?=\d)/中/
+    - xform/[ump](?=\d)/
+    # 韻腹爲列
+    - xlit/yuiA*OaeoE/一二三四五六七八九十/
+
+    # 聲調加韻類
+    # 元音
+    - xform/1元/四中/
+    - xform/2元/一中/
+    - xform/3元/三中/
+    - xform/4元/三上/
+    - xform/5元/二上/
+    - xform/6元/二中/
+    # 鼻音
+    - xform/1鼻/七中/
+    - xform/2鼻/十中/
+    - xform/3鼻/八中/
+    - xform/4鼻/八上/
+    - xform/5鼻/九上/
+    - xform/6鼻/九中/
+    # 入聲
+    - xform/1入/四下/
+    - xform/2入/五上/
+    - xform/3入/三下/
+    - xform/4入/五中/
+    - xform/5入/五下/
+    - xform/6入/二下/
+
+    # 單字鍵位名
+    # 上
+    - xform/一上/甲/
+    - xform/二上/乙/
+    - xform/三上/丙/
+    - xform/四上/丁/
+    - xform/五上/戊/
+    - xform/六上/己/
+    - xform/七上/庚/
+    - xform/八上/辛/
+    - xform/九上/壬/
+    - xform/十上/癸/
+    # 中
+    - xform/一中/壹/
+    - xform/二中/貳/
+    - xform/三中/叄/
+    - xform/四中/肆/
+    - xform/五中/伍/
+    - xform/六中/陸/
+    - xform/七中/柒/
+    - xform/八中/捌/
+    - xform/九中/玖/
+    - xform/十中/拾/
+    # 下
+    - xform/一下/子/
+    - xform/二下/丑/
+    - xform/三下/寅/
+    - xform/四下/卯/
+    - xform/五下/辰/
+    - xform/六下/巳/
+    - xform/七下/午/
+    - xform/八下/未/
+    - xform/九下/申/
+    - xform/十下/酉/
+
+qwerty_layout:
+  __append:
+    - xlit|*Qkt**pcs*|qwertyuiop|
+    - xlit|jwgdfhbzl|asdfghjkl|
+    - xlit|ØqNn**m|zxcvbnm|
+    - xlit|甲乙丙丁戊己庚辛壬癸|qwertyuiop|
+    - xlit|壹貳叄肆伍陸柒捌玖拾|asdfghjkl;|
+    - xlit|子丑寅卯辰巳午未申酉|zxcvbnm,./|
+
+revert_qwerty:
+  __append:
+    # 還原鍵位名
+    - xlit|qwertyuiop|甲乙丙丁戊己庚辛壬癸|
+    - xlit|asdfghjkl;|壹貳叄肆伍陸柒捌玖拾|
+    - xlit|zxcvbnm,./|子丑寅卯辰巳午未申酉|
+    # 還原聲母
+    - xform/(^|\s)乙/$1Q/
+    - xform/(^|\s)丙/$1k/
+    - xform/(^|\s)丁/$1t/
+    - xform/(^|\s)庚/$1p/
+    - xform/(^|\s)辛/$1c/
+    - xform/(^|\s)壬/$1s/
+    # ---
+    - xform/(^|\s)壹/$1j/
+    - xform/(^|\s)貳/$1w/
+    - xform/(^|\s)叄/$1g/
+    - xform/(^|\s)肆/$1d/
+    - xform/(^|\s)伍/$1f/
+    - xform/(^|\s)陸/$1h/
+    - xform/(^|\s)柒/$1b/
+    - xform/(^|\s)捌/$1z/
+    - xform/(^|\s)玖/$1l/
+    # ---
+    - xform/(^|\s)子/$1Ø/
+    - xform/(^|\s)丑/$1q/
+    - xform/(^|\s)寅/$1N/
+    - xform/(^|\s)卯/$1n/
+    - xform/(^|\s)午/$1m/
+
+# 三拼到粵拼
+saamping_to_jyutping:
+  __append:
+    # 行列鍵位名
+    # 上
+    - xform/甲/一上/
+    - xform/乙/二上/
+    - xform/丙/三上/
+    - xform/丁/四上/
+    - xform/戊/五上/
+    - xform/己/六上/
+    - xform/庚/七上/
+    - xform/辛/八上/
+    - xform/壬/九上/
+    - xform/癸/十上/
+    # 中
+    - xform/壹/一中/
+    - xform/貳/二中/
+    - xform/叄/三中/
+    - xform/肆/四中/
+    - xform/伍/五中/
+    - xform/陸/六中/
+    - xform/柒/七中/
+    - xform/捌/八中/
+    - xform/玖/九中/
+    - xform/拾/十中/
+    # 下
+    - xform/子/一下/
+    - xform/丑/二下/
+    - xform/寅/三下/
+    - xform/卯/四下/
+    - xform/辰/五下/
+    - xform/巳/六下/
+    - xform/午/七下/
+    - xform/未/八下/
+    - xform/申/九下/
+    - xform/酉/十下/
+
+    # 聲調加韻類
+    # 元音
+    - xform/四中($|\s)/元1$1/
+    - xform/一中($|\s)/元2$1/
+    - xform/三中($|\s)/元3$1/
+    - xform/三上($|\s)/元4$1/
+    - xform/二上($|\s)/元5$1/
+    - xform/二中($|\s)/元6$1/
+    # 鼻音               
+    - xform/七中($|\s)/鼻1$1/
+    - xform/十中($|\s)/鼻2$1/
+    - xform/八中($|\s)/鼻3$1/
+    - xform/八上($|\s)/鼻4$1/
+    - xform/九上($|\s)/鼻5$1/
+    - xform/九中($|\s)/鼻6$1/
+    # 入聲
+    - xform/四下($|\s)/入1$1/
+    - xform/五上($|\s)/入2$1/
+    - xform/三下($|\s)/入3$1/
+    - xform/五中($|\s)/入4$1/
+    - xform/五下($|\s)/入5$1/
+    - xform/二下($|\s)/入6$0/
+
+    # 鼻音韻
+    - xform/(?<=[mN])五中鼻/$1/
+
+    # 還原韻尾
+    - xform/上元/i/
+    - xform/中元//
+    - xform/下元/u/
+    - xform/上鼻/N/
+    - xform/中鼻/n/
+    - xform/下鼻/m/
+    - xform/上入/k/
+    - xform/中入/t/
+    - xform/下入/p/
+
+    # 還原韻腹
+    - xlit/一二三四五六七八九十/yuiA*OaeoE/
+
+    # 特殊規則
+    - xform/ii/Oi/
+
+    # 還原雙字音素
+    - xform/N/ng/
+    - xform/q/gw/
+    - xform/Q/kw/
+    - xform/A/aa/
+    - xform/E/oe/
+    - xform/O/eo/
+    - xform/y/yu/
