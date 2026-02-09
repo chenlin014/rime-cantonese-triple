@@ -11,7 +11,8 @@ jyutping_to_saamping:
     - xform/yu/y/
     # 無聲母
     - xform/^([aeiouAEOy])/Ø$1/
-
+    # 空位利用：uu -> 無韻尾
+    - derive/^([mnN])(?=\d)/$1uu/
     # 韻尾類型：元音、鼻音、入聲
     - xform/([aeiouAEOy]\d)/$1元/
     - xform/([mnN]\d)/$1鼻/
@@ -26,7 +27,7 @@ jyutping_to_saamping:
     # 下：u, m, p
     - xform/([bpmfdtnlgkNhqQwzcsj])i(?=\d)/$1i中/
     - xform/([bpmfdtnlgkNhqQwzcsj])u(?=\d)/$1u中/
-    - xform/Oi(?=\d)/ii/ # 空位再利用：i+i -> eoi
+    - xform/Oi(?=\d)/ii/ # 空位利用：ii -> eoi
     - xform/[iNk](?=\d)/上/
     - xform/([aeoAEOy])(?=\d)/$1中/
     - xform/[nt](?=\d)/中/
@@ -207,8 +208,11 @@ saamping_to_jyutping:
     - xlit/一二三四五六七八九十/yuiA-OaeoE/
     - xform/-//
 
-    # 特殊規則：i+i -> eoi
+    # 特殊規則
+    # ii -> eoi
     - xform/ii/Oi/
+    # uu -> 無韻尾
+    - xform/uu//
 
     # 還原雙字音素
     - xform/N/ng/
