@@ -17,7 +17,8 @@ jyutping_to_saamping:
     - xform/([mnN]\d)/$1鼻/
     - xform/([ptk]\d)/$1入/
     # 鼻音韻
-    - xform/^([mN])(?=\d)/$1五中/
+    - xform/^([mnN])(?=\d)/Ø$1/
+    - xform/(?<=[bpmfdtnlgkNhqQwzcsjØ])([mnN])(?=\d)/-$1/
 
     # 韻尾爲行
     # 上：i, ng, k
@@ -31,7 +32,7 @@ jyutping_to_saamping:
     - xform/[nt](?=\d)/中/
     - xform/[ump](?=\d)/下/
     # 韻腹爲列
-    - xlit/yuiA*OaeoE/一二三四五六七八九十/
+    - xlit/yuiA-OaeoE/一二三四五六七八九十/
 
     # 聲調加韻類
     # 元音
@@ -191,9 +192,6 @@ saamping_to_jyutping:
     - xform/(?<=[上中下])五下($|\s)/入5$1/
     - xform/(?<=[上中下])二下($|\s)/入6$0/
 
-    # 鼻音韻
-    - xform/(?<=[mN])五中鼻/$1/
-
     # 還原韻尾
     - xform/上元/i/
     - xform/中元//
@@ -206,7 +204,8 @@ saamping_to_jyutping:
     - xform/下入/p/
 
     # 還原韻腹
-    - xlit/一二三四五六七八九十/yuiA*OaeoE/
+    - xlit/一二三四五六七八九十/yuiA-OaeoE/
+    - xform/-//
 
     # 特殊規則：i+i -> eoi
     - xform/ii/Oi/
