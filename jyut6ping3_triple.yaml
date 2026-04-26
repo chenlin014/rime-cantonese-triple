@@ -95,9 +95,7 @@ jyutping_to_saamping:
 
 qwerty_layout:
   __append:
-    - xlit|*Qkt**pcs*|qwertyuiop|
-    - xlit|jwgdfhbzl|asdfghjkl|
-    - xlit|ØqNn**m|zxcvbnm|
+    - xlit|pctk**NjbzdgØhwnlfsQq**m|qwertyuiasdfghjklzxcvbnm|
     - xlit|甲乙丙丁戊己庚辛壬癸|qwertyuiop|
     - xlit|壹貳叄肆伍陸柒捌玖拾|asdfghjkl;|
     - xlit|子丑寅卯辰巳午未申酉|zxcvbnm,./|
@@ -109,27 +107,27 @@ revert_qwerty:
     - xlit|asdfghjkl;|壹貳叄肆伍陸柒捌玖拾|
     - xlit|zxcvbnm,./|子丑寅卯辰巳午未申酉|
     # 還原聲母
-    - xform/(^|\s)乙/$1Q/
-    - xform/(^|\s)丙/$1k/
-    - xform/(^|\s)丁/$1t/
-    - xform/(^|\s)庚/$1p/
-    - xform/(^|\s)辛/$1c/
-    - xform/(^|\s)壬/$1s/
+    - xform/(^|\s)甲/$1p/
+    - xform/(^|\s)乙/$1c/
+    - xform/(^|\s)丙/$1t/
+    - xform/(^|\s)丁/$1k/
+    - xform/(^|\s)庚/$1N/
+    - xform/(^|\s)辛/$1j/
     # ---
-    - xform/(^|\s)壹/$1j/
-    - xform/(^|\s)貳/$1w/
-    - xform/(^|\s)叄/$1g/
-    - xform/(^|\s)肆/$1d/
-    - xform/(^|\s)伍/$1f/
+    - xform/(^|\s)壹/$1b/
+    - xform/(^|\s)貳/$1z/
+    - xform/(^|\s)叄/$1d/
+    - xform/(^|\s)肆/$1g/
+    - xform/(^|\s)伍/$1Ø/
     - xform/(^|\s)陸/$1h/
-    - xform/(^|\s)柒/$1b/
-    - xform/(^|\s)捌/$1z/
+    - xform/(^|\s)柒/$1w/
+    - xform/(^|\s)捌/$1n/
     - xform/(^|\s)玖/$1l/
     # ---
-    - xform/(^|\s)子/$1Ø/
-    - xform/(^|\s)丑/$1q/
-    - xform/(^|\s)寅/$1N/
-    - xform/(^|\s)卯/$1n/
+    - xform/(^|\s)子/$1f/
+    - xform/(^|\s)丑/$1s/
+    - xform/(^|\s)寅/$1Q/
+    - xform/(^|\s)卯/$1q/
     - xform/(^|\s)午/$1m/
 
 # 三拼到粵拼
